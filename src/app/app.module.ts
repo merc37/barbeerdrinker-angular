@@ -1,7 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatButtonModule, MatMenuModule } from '@angular/material';
+import {
+    MatToolbarModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatTableModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+} from '@angular/material';
+import { ChartsModule } from 'ng2-charts';
+
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http/';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,7 +22,7 @@ import { DrinkerComponent } from './drinker/drinker.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
-    { path: 'drinker', component: DrinkerComponent },
+    { path: 'drinkers', component: DrinkerComponent },
     { path: '**', redirectTo: '/home' }
 ];
 
@@ -25,11 +35,16 @@ const appRoutes: Routes = [
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
+        FormsModule,
         RouterModule.forRoot(appRoutes),
         HttpClientModule,
         MatToolbarModule,
         MatButtonModule,
-        MatMenuModule
+        MatMenuModule,
+        MatTableModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        ChartsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

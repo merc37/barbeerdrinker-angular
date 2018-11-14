@@ -1,33 +1,18 @@
-<div class="flex-grow-1 d-flex flex-column h-100">
+<div>
   <mat-toolbar color="primary">
-    <button mat-raised-button color="primary"><a routerLink="/home">Home</a></button>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="drinkersMenu">Drinkers</button>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="BarsMenu">Bars</button>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="BeersMenu">Beers</button>
-    <button mat-raised-button color="primary">Query</button>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="ModifyMenu">Modify</button>
+    <a mat-button routerLink="/home" color="accent">Home</a>
+    <a mat-button routerLink="/drinkers" color="primary">Drinkers</a>
+    <a mat-button color="primary">Bars</a>
+    <a mat-button color="primary">Beers</a>
+    <a mat-button color="primary">Query</a>
+    <a mat-button [matMenuTriggerFor]="modifyMenu" color="primary">Modify</a>
   </mat-toolbar>
 
-  <mat-menu #drinkersMenu="matMenu">
-    <button mat-menu-item>Drinkers</button>
-    <button mat-menu-item><a routerLink="/drinker">Drinker</a></button>
-  </mat-menu>
-
-  <mat-menu #BarsMenu="matMenu">
-    <button mat-menu-item>Top Drinker</button>
-    <button mat-menu-item>Popular beers</button>
-    <button mat-menu-item>Best Sellers</button>
-    <button mat-menu-item>Time Distribution</button>
-  </mat-menu>
-
-  <mat-menu #BeersMenu="matMenu">
-    <button mat-menu-item> Beers</button>
-    <button mat-menu-item>Beer</button>
-  </mat-menu>
-
-  <mat-menu #ModifyMenu="matMenu">
+  <mat-menu #modifyMenu="matMenu">
     <button mat-menu-item>Modify</button>
   </mat-menu>
 
-  <router-outlet></router-outlet>
+  <div style="margin-top: 16px; margin-bottom: 16px; margin-left: 32px; margin-right: 32px;" class="flex-grow-1 d-flex align-items-center justify-content-center">
+    <router-outlet></router-outlet>
+  </div>
 </div>
