@@ -1,6 +1,6 @@
 <form class="d-flex flex-row align-self-center align-items-center" style="margin-bottom: 8px;">
   <mat-form-field style="margin-right: 8px;">
-    <input matInput placeholder="Drinker" type="text" name="drinkerInput" [(ngModel)]="drinkerValue">
+    <input matInput placeholder="Bar" type="text" name="barInput" [(ngModel)]="barValue">
   </mat-form-field>
   <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-left: 8px;">Search</button>
   <div style="width: 48px; height: 48px;">
@@ -22,8 +22,11 @@
   </table>
 </div>
 
-<canvas *ngIf="beersOrderedMostData.length" style="margin-bottom: 8px; margin-top: 8px;" class="mat-elevation-z8"
-  baseChart [chartType]="chartTypeBar" [datasets]="beersOrderedMostData" [labels]="beersOrderedMostLabels" [options]="beersOrderedMostOptions"></canvas>
+<canvas *ngIf="topSpendersData.length" style="margin-bottom: 8px; margin-top: 8px;" class="mat-elevation-z8" baseChart
+  [chartType]="chartTypeBar" [datasets]="topSpendersData" [labels]="topSpendersLabels" [options]="topSpendersOptions"></canvas>
 
-<canvas *ngIf="spendingTimeBarData.length" style="margin-top: 8px;" class="mat-elevation-z8" baseChart [chartType]="chartTypeBar"
-  [datasets]="spendingTimeBarData" [labels]="spendingTimeBarLabels" [options]="spendingTimeBarOptions"></canvas>
+<canvas *ngIf="mostPopularBeersData.length" style="margin-bottom: 8px; margin-top: 8px;" class="mat-elevation-z8"
+  baseChart [chartType]="chartTypeBar" [datasets]="mostPopularBeersData" [labels]="mostPopularBeersLabels" [options]="mostPopularBeersOptions"></canvas>
+
+<canvas *ngIf="manufacturersData.length" style="margin-top: 8px;" class="mat-elevation-z8" baseChart [chartType]="chartTypeBar"
+  [datasets]="manufacturersData" [labels]="manufacturersLabels" [options]="manufacturersOptions"></canvas>

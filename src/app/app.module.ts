@@ -8,6 +8,7 @@ import {
     MatTableModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule
 } from '@angular/material';
 import { ChartsModule } from 'ng2-charts';
 
@@ -19,10 +20,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DrinkerComponent } from './drinker/drinker.component';
+import { BarsComponent } from './bars/bars.component';
+import { BeersComponent } from './beers/beers.component';
+import { AddTransactionComponent } from './add-transaction/add-transaction.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'drinkers', component: DrinkerComponent },
+    { path: 'bars', component: BarsComponent },
+    { path: 'beers', component: BeersComponent },
+    { path: 'add-transaction', component: AddTransactionComponent },
     { path: '**', redirectTo: '/home' }
 ];
 
@@ -30,7 +37,10 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         HomeComponent,
-        DrinkerComponent
+        DrinkerComponent,
+        BarsComponent,
+        BeersComponent,
+        AddTransactionComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -45,6 +55,7 @@ const appRoutes: Routes = [
         MatInputModule,
         MatProgressSpinnerModule,
         ChartsModule,
+        MatSnackBarModule
     ],
     providers: [],
     bootstrap: [AppComponent]

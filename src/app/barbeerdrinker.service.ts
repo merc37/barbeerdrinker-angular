@@ -18,7 +18,7 @@ export class BarBeerDrinkerService {
                 if (response['statusCode'] === 200) {
                     return resolve(JSON.parse(response['body'])['results']);
                 } else {
-                    return reject(response);
+                    return reject(JSON.parse(response['body']));
                 }
             }).catch((response) => {
                 return reject(response);

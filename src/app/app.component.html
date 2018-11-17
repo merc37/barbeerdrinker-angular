@@ -1,12 +1,17 @@
 <div>
   <mat-toolbar color="primary">
-    <a mat-button routerLink="/home" color="accent">Home</a>
-    <a mat-button routerLink="/drinkers" color="primary">Drinkers</a>
-    <a mat-button color="primary">Bars</a>
-    <a mat-button color="primary">Beers</a>
-    <a mat-button color="primary">Query</a>
-    <a mat-button [matMenuTriggerFor]="modifyMenu" color="primary">Modify</a>
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-button routerLink="/drinkers">Drinkers</button>
+    <button mat-button [matMenuTriggerFor]="barsMenu">Bars</button>
+    <button mat-button routerLink="/beers">Beers</button>
+    <button mat-button>Query</button>
+    <button mat-button [matMenuTriggerFor]="modifyMenu">Modify</button>
   </mat-toolbar>
+
+  <mat-menu #barsMenu="matMenu">
+    <button mat-menu-item routerLink="/bars">Bar</button>
+    <button mat-menu-item routerLink="/add-transaction">Add Transaction</button>
+  </mat-menu>
 
   <mat-menu #modifyMenu="matMenu">
     <button mat-menu-item>Modify</button>
