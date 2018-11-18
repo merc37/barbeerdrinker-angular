@@ -28,5 +28,5 @@
 <canvas *ngIf="biggestConsumerData.length" style="margin-bottom: 8px; margin-top: 8px;" class="mat-elevation-z8"
   baseChart [chartType]="chartTypeBar" [datasets]="biggestConsumerData" [labels]="biggestConsumerLabels" [options]="biggestConsumerOptions"></canvas>
 
-<!-- <canvas *ngIf="manufacturersData.length" style="margin-top: 8px;" class="mat-elevation-z8" baseChart [chartType]="chartTypeBar"
-  [datasets]="manufacturersData" [labels]="manufacturersLabels" [options]="barChartOptions"></canvas> -->
+<canvas *ngIf="beerTimeDistData.length" style="margin-top: 8px;" class="mat-elevation-z8" baseChart [chartType]="chartTypeBar"
+  [datasets]="beerTimeDistData" [labels]="beerTimeDistLabels" [options]="beerTimeDistOptions"></canvas>

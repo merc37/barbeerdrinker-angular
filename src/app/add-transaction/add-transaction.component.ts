@@ -1,50 +1,72 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { BarBeerDrinkerService } from '../barbeerdrinker.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { ErrorDialogComponent } from '../modify/modify.component';
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './add-transaction.component.html',
-  styleUrls: ['./add-transaction.component.css']
+    selector: 'app-transaction',
+    templateUrl: './add-transaction.component.html',
+    styleUrls: ['./add-transaction.component.css']
 })
 export class AddTransactionComponent implements OnInit {
 
-  @HostBinding('class.d-flex') dFlex = 'd-flex';
-  @HostBinding('class.flex-column') flexColumn = 'flex-column';
-  @HostBinding('class.flex-grow-1') flexGrow = 'flex-grow-1';
+    @HostBinding('class.d-flex') dFlex = 'd-flex';
+    @HostBinding('class.flex-column') flexColumn = 'flex-column';
+    @HostBinding('class.flex-grow-1') flexGrow = 'flex-grow-1';
 
-  dataSource: Array<Object> = [];
-  columns: string[] = [];
-  IDValue = '' ;
-  timeValue = '';
-  totalValue = '';
-  tipValue = '';
-  barValue = '';
-  drinkerValue = '';
-  spinnerHidden = true;
+    dataSource: Array<Object> = [];
+    columns: string[] = [];
+    IDValue = 'UNIQUEID1';
+    timeValue = '2018-11-19T15:53:00';
+    totalValue = '120';
+    tipValue = '56.74';
+    barValue = 'Fay Inc';
+    drinkerValue = 'Jerald Feeney';
+    spinnerHidden = true;
 
-// 'SELECT * FROM Items WHERE type="beer" ORDER BY Rand() LIMIT 10'
+    constructor(private bbd: BarBeerDrinkerService, private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
-  constructor(private bbd: BarBeerDrinkerService, private snackBar: MatSnackBar) {}
+    ngOnInit() {
+    }
 
-  ngOnInit() {
-  }
+    onSubmit() {
+        this.spinnerHidden = false;
+        this.bbd.query('INSERT INTO BarBeerDrinker.Bills' +
+            ' VALUES ("' + this.IDValue + '","' + this.timeValue + '",' + this.totalValue + ',' + this.tipValue + ')').then(() => {
+                return Promise.all([
+                    this.bbd.query('INSERT INTO BarBeerDrinker.BillsIssued (bill, bar)' +
+                        ' VALUES ("' + this.IDValue + '","' + this.barValue + '")'),
+                    this.bbd.query('INSERT INTO BarBeerDrinker.BillsOwed (bill, drinker)' +
+                        ' VALUES ("' + this.IDValue + '","' + this.drinkerValue + '")'),
+                ]).then((results) => {
+                    this.snackBar.open('Bill Added');
+                    this.spinnerHidden = true;
+                }).catch((err) => {
+                    if (err['error']) {
+                        err = err['error'];
+                        if (err['sqlMessage']) {
+                            err = err['sqlMessage'];
+                        }
+                    }
+                    this.dialog.open(ErrorDialogComponent, {
+                        data: { message: err },
+                    });
+                    this.spinnerHidden = true;
 
-  onSubmit() {
-    this.spinnerHidden = false;
-      Promise.all([
-        this.bbd.query('INSERT INTO BarBeerDrinker.BillsIssued (bill, bar)' +
-        ' VALUES (' + this.IDValue + ',' + this.barValue + ')'),
-        this.bbd.query('INSERT INTO BarBeerDrinker.BillsOwed (bill, drinker)' +
-        ' VALUES (' + this.IDValue + ',' + this.drinkerValue + ')'),
-        this.bbd.query('INSERT INTO BarBeerDrinker.Bills (transactionID, time, total, tip)' +
-        ' VALUES (' + this.IDValue + ',' + this.timeValue + ',' + this.totalValue + ',' + this.tipValue + ')')
-      ]).then((results) => {
-        this.spinnerHidden = true;
-      }).catch((err) => {
-        console.log();
-      });
-
+                    this.bbd.query('DELETE FROM Bills b WHERE b.transactionID="' + this.IDValue + '"');
+                });
+            }).catch((err) => {
+                if (err['error']) {
+                    err = err['error'];
+                    if (err['sqlMessage']) {
+                        err = err['sqlMessage'];
+                    }
+                }
+                this.dialog.open(ErrorDialogComponent, {
+                    data: { message: err },
+                });
+                this.spinnerHidden = true;
+            });
     }
 
 }

@@ -8,7 +8,8 @@ import {
     MatTableModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
 } from '@angular/material';
 import { ChartsModule } from 'ng2-charts';
 
@@ -23,6 +24,7 @@ import { DrinkerComponent } from './drinker/drinker.component';
 import { BarsComponent } from './bars/bars.component';
 import { BeersComponent } from './beers/beers.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
+import { ModifyComponent, ErrorDialogComponent } from './modify/modify.component';
 import { QueryComponent } from './query/query.component';
 
 const appRoutes: Routes = [
@@ -32,10 +34,14 @@ const appRoutes: Routes = [
     { path: 'bars', component: BarsComponent },
     { path: 'beers', component: BeersComponent },
     { path: 'add-transaction', component: AddTransactionComponent },
+    { path: 'modify', component: ModifyComponent },
     { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
+    entryComponents: [
+        ErrorDialogComponent
+    ],
     declarations: [
         AppComponent,
         HomeComponent,
@@ -43,7 +49,10 @@ const appRoutes: Routes = [
         BarsComponent,
         BeersComponent,
         AddTransactionComponent,
-        QueryComponent
+        QueryComponent,
+        AddTransactionComponent,
+        ModifyComponent,
+        ErrorDialogComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -58,7 +67,8 @@ const appRoutes: Routes = [
         MatInputModule,
         MatProgressSpinnerModule,
         ChartsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
