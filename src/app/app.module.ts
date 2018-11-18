@@ -23,8 +23,10 @@ import { DrinkerComponent } from './drinker/drinker.component';
 import { BarsComponent } from './bars/bars.component';
 import { BeersComponent } from './beers/beers.component';
 import { AddTransactionComponent } from './add-transaction/add-transaction.component';
+import { QueryComponent } from './query/query.component';
 
 const appRoutes: Routes = [
+    { path: 'query', component: QueryComponent },
     { path: 'home', component: HomeComponent },
     { path: 'drinkers', component: DrinkerComponent },
     { path: 'bars', component: BarsComponent },
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
         DrinkerComponent,
         BarsComponent,
         BeersComponent,
-        AddTransactionComponent
+        AddTransactionComponent,
+        QueryComponent
     ],
     imports: [
         BrowserAnimationsModule,

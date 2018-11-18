@@ -1,1 +1,30 @@
+<form class="d-flex flex-row align-self-center align-items-center" style="margin-bottom: 8px;">
+    <mat-form-field>
+      <textarea matInput placeholder="transactionID" type="text" name="IDInput" [(ngModel)]="IDValue"></textarea>
+    </mat-form-field>
 
+    <mat-form-field>
+        <textarea matInput placeholder="time" type="text" name="timeInput" [(ngModel)]="timeValue"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="total" type="text" name="totalInput" [(ngModel)]="totalValue"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="tip" type="text" name="tipInput" [(ngModel)]="tipValue"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="bar" type="text" name="barInput" [(ngModel)]="barValue"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="drinker" type="text" name="drinkerInput" [(ngModel)]="drinkerValue"></textarea>
+      </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onSubmit()" style="margin-left: 8px;">Query</button>
+    <div style="width: 48px; height: 48px;">
+      <mat-spinner [diameter]="48" color="accent" [hidden]="spinnerHidden"></mat-spinner>
+    </div>
+  </form>
